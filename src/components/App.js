@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import GlobalStyle from '../globalStyles';
 import NavBar from './NavBar/NavBar';
 import Page from './Page/Page';
-import { fetchStories, cleanData } from '../util'
+import { fetchStories, cleanData } from '../util';
 
 const App = () => {
   const [category, setCategory] = useState('home')
@@ -34,6 +35,7 @@ const App = () => {
 
   return (
     <Router>
+      <GlobalStyle />
       <NavBar 
         changeView={changeView}
       />
@@ -49,7 +51,7 @@ const App = () => {
             /> 
           )}
         />
-        <Redirect to='/' />
+        <Redirect to='/home' />
       </Switch>
 
     </Router>
