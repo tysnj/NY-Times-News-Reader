@@ -1,10 +1,14 @@
-export const fetchStories = () => {
-  return fetch('')
+export const fetchStories = async (url) => {
+  return await fetch(url)
   .then(response => {
-    cleanData(response)
+    if (response.ok) {
+      return response.json()
+    } else {
+      throw new Error(response.message)
+    }
   })
 }
 
-const cleanData = () => {
-  
+export const cleanData = (data) => {
+  return data
 }
