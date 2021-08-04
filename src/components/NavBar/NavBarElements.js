@@ -29,15 +29,17 @@ export const NavLogo = styled(Link)`
   justify-self: flex-start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
 `;
 
 
 export const NavIcon = styled(GiWorld)`
-  margin-left: 0.2rem;
+  margin-left: -0.2rem;
   margin-right: 0.5rem;
+  height: 80px;
+  width: 50px;
 `
 
 export const MobileIcon = styled.span`
@@ -45,10 +47,10 @@ export const MobileIcon = styled.span`
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
-    top: 0;
+    top: 13px;
     right: 0;
     transform: translate(-100%, 60%);
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     cursor: pointer;
   }
 `
@@ -96,6 +98,7 @@ export const NavLink = styled(Link)`
     text-align: center;
     padding: 2rem;
     width: 100%;
+    font-size: 1.1rem;
     display: table;
     &:hover {
       color: #fff;
