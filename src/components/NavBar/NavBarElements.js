@@ -29,17 +29,27 @@ export const NavLogo = styled(Link)`
   justify-self: flex-start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   display: flex;
   align-items: center;
-`;
+ 
+  @media screen and (max-width: 768px) {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+`
 
 
 export const NavIcon = styled(GiWorld)`
-  margin-left: -0.2rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   height: 80px;
   width: 50px;
+
+  @media screen and (max-width: 768px) {
+    margin-left: -0.8rem;
+    margin-right: 0.8rem;
+    width: 40px;
+  }
 `
 
 export const MobileIcon = styled.span`
@@ -77,7 +87,7 @@ export const NavItem = styled.li`
   height: 80px;
   border-bottom: 2px solid transparent;
   &:hover {
-    border-bottom: 2px solid #4b59f7;
+    border-bottom: 2px solid #191919;
   }
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -94,6 +104,7 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
+  font-size: 1.5rem;
   @media screen and (max-width: 768px) {
     text-align: center;
     padding: 2rem;
