@@ -8,7 +8,6 @@ import { fetchStories, cleanData } from '../util';
 const App = () => {
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
-  const [pageView, setPageView] = useState('home')
   const [error, setError] = useState(null);
 
   const getStories = useRef(() => {})
@@ -25,10 +24,6 @@ const App = () => {
     return fetchStories(requestURL + category + '.json?api-key=' + apiKey)
   }
 
-  const changeView = (view) => {
-    setPageView(view)
-  }
-
   const changeCategory = (section) => {
     setCategory(section)
   }
@@ -37,14 +32,13 @@ const App = () => {
     <Router>
       <GlobalStyle />
       <NavBar 
-        changeView={changeView}
+        changeCategory={changeCategory}
       />
       <Switch>
         <Route exact path='/{$pageView}'
           render={() => (
             <Page
               error={error}
-              pageView={pageView}
               category={category}
               changeCategory={changeCategory}
               stories={stories}
