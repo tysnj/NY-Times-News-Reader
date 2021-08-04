@@ -21,7 +21,7 @@ const NavBar = () => {
     <IconContext.Provider value={{color: '#191919'}}>
       <Nav>
         <NavBarContainer>
-          <NavLogo>
+          <NavLogo to='/home'>
             <NavIcon/>
               NY Times News Reader
           </NavLogo>
