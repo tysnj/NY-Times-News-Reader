@@ -10,5 +10,5 @@ export const fetchStories = async (url) => {
 }
 
 export const cleanData = (data) => {
-  return data
+  return data.results
 }

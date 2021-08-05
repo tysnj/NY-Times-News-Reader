@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import GlobalStyle from '../globalStyles';
 import NavBar from './NavBar/NavBar';
-import Page from './Page/Page';
+import Content from './Content/Content';
 import { fetchStories, cleanData } from '../util';
 
 const App = () => {
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
-  const [pageView, setPageView] = useState('home')
+  const [storyLinks, setStoryLinks] = useState([])
+  const [pageView, setPageView] = useState('list')
   const [error, setError] = useState(null);
 
   const getStories = useRef(() => {})
@@ -19,37 +20,51 @@ const App = () => {
     .catch(error => setError(`Something's gone wrong. Please try again`))
   }, [category])
 
+  useEffect(() => {
+    const paths = stories.map((story) => {
+      return story.url.split('/').pop().split('.').shift();
+    });
+    setStoryLinks(paths);
+  }, [stories]);
+
   getStories.current = () => {
     const requestURL = 'https://api.nytimes.com/svc/topstories/v2/'
     const apiKey = process.env.REACT_APP_NYT_API_KEY
     return fetchStories(requestURL + category + '.json?api-key=' + apiKey)
   }
 
-  const changeView = (view) => {
-    setPageView(view)
-  }
-
   const changeCategory = (section) => {
     setCategory(section)
+  }
+
+  const changeView = (selection) => {
+    setPageView(selection)
   }
 
   return (
     <Router>
       <GlobalStyle />
       <NavBar 
-        changeView={changeView}
+        changeCategory={changeCategory}
       />
       <Switch>
-        <Route exact path='/{$pageView}'
+        <Route 
+          exact 
+          path='/home'
           render={() => (
-            <Page
-              error={error}
+            <Content
               pageView={pageView}
+              changeView={changeView}
+              error={error}
               category={category}
               changeCategory={changeCategory}
               stories={stories}
+              storyLinks={storyLinks}
             /> 
           )}
+        />
+        <Route
+
         />
         <Redirect to='/home' />
       </Switch>
