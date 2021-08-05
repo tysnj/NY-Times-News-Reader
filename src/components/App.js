@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import GlobalStyle from '../globalStyles';
 import NavBar from './NavBar/NavBar';
-import Page from './Page/Page';
+import Content from './Content/Content';
 import { fetchStories, cleanData } from '../util';
 
 const App = () => {
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
+  const [pageView, setPageView] = useState('list')
   const [error, setError] = useState(null);
 
   const getStories = useRef(() => {})
@@ -28,6 +29,10 @@ const App = () => {
     setCategory(section)
   }
 
+  const changeView = (selection) => {
+    setPageView(selection)
+  }
+
   return (
     <Router>
       <GlobalStyle />
@@ -35,15 +40,22 @@ const App = () => {
         changeCategory={changeCategory}
       />
       <Switch>
-        <Route exact path='/{$pageView}'
+        <Route 
+          exact 
+          path='/home'
           render={() => (
-            <Page
+            <Content
+              pageView={pageView}
+              changeView={changeView}
               error={error}
               category={category}
               changeCategory={changeCategory}
               stories={stories}
             /> 
           )}
+        />
+        <Route
+
         />
         <Redirect to='/home' />
       </Switch>

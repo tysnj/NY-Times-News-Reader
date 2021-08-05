@@ -5,7 +5,7 @@ import { GiWorld } from 'react-icons/gi'
 
 
 export const Nav = styled.nav`
-  background: #91B6FB;
+  background: #fff;
   height: 80px;
   width: 100%;
   display: flex;
@@ -15,6 +15,7 @@ export const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 999;
+  border-bottom: 1px solid lightgrey;
 `;
 
 export const NavBarContainer = styled(Container)`
