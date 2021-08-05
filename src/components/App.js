@@ -10,6 +10,7 @@ const App = () => {
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
   const [storyLinks, setStoryLinks] = useState([])
+  const [selectedStory, setSelectedStory] = useState(null)
   const [error, setError] = useState(null);
 
   const getStories = useRef(() => {})
@@ -39,6 +40,10 @@ const App = () => {
 
   const changeView = (view) => {
     setPageView(view)
+  }  
+  
+  const changeStory = (story) => {
+    setSelectedStory(story)
   }
 
   return (
@@ -47,10 +52,11 @@ const App = () => {
       <NavBar 
         changeCategory={changeCategory}
         changeView={changeView}
+        changeStory={changeStory}
       />
       <Switch>
         <Route 
-          
+          exact
           path={`/${category}`}
           render={() => (
             <Content
@@ -61,6 +67,7 @@ const App = () => {
               changeCategory={changeCategory}
               stories={stories}
               storyLinks={storyLinks}
+              changeStory={changeStory}
             /> 
           )}
         />
@@ -71,11 +78,7 @@ const App = () => {
             <Content
               pageView={pageView}
               changeView={changeView}
-              error={error}
-              category={category}
               changeCategory={changeCategory}
-              stories={stories}
-              storyLinks={storyLinks}
             /> 
           )}
         />
@@ -86,8 +89,7 @@ const App = () => {
             const { storyPath } = match.params;
             const index = storyLinks.indexOf(storyPath);
             if (index >= 0) {
-              const story = stories[index];
-              return <Content selectedStory={story} path={storyPath} />;
+              return <Content selectedStory={selectedStory} path={storyLinks[index]} />;
             }
             return <Redirect to='/home' />;
           }}

@@ -12,7 +12,7 @@ import {
   NavLink
 } from './NavBarElements'
 
-const NavBar = ({changeCategory, changeView}) => {
+const NavBar = ({changeCategory, changeView, changeStory}) => {
   const [click, setClick] = useState(false)
   
   const handleClick = () => setClick(!click)
@@ -26,6 +26,7 @@ const NavBar = ({changeCategory, changeView}) => {
             onClick={() => {
               changeView('list')
               changeCategory('home')
+              changeStory('')
           }}>
             <NavIcon/>
               NY Times News Reader
@@ -40,6 +41,7 @@ const NavBar = ({changeCategory, changeView}) => {
                 onClick={() => {
                     changeView('list')
                     changeCategory('home')
+                    changeStory('')
                 }}>
                 Home
               </NavLink>
@@ -50,6 +52,7 @@ const NavBar = ({changeCategory, changeView}) => {
                 onClick={() => {
                   changeView('categories')
                   changeCategory('home')
+                  changeStory(null)
                 }}>
                 Categories
               </NavLink>

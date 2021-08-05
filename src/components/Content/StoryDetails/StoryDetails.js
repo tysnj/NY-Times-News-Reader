@@ -1,10 +1,16 @@
 import React from 'react'
+import { StoryContainer, StoryHeadline, StoryAuthor } from './StoryDetailsElements'
 
-const StoryDetails = () => {
+const StoryDetails = ({ details }) => {
   return (
-    <div>
-      
-    </div>
+    <StoryContainer>
+      <StoryHeadline>
+        {details.title}
+      </StoryHeadline>
+      <StoryAuthor>
+        {details.byline}
+      </StoryAuthor>
+    </StoryContainer>
   )
 }
 

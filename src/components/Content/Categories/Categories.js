@@ -1,7 +1,7 @@
 import React from 'react'
 import { CategoriesContainer, CategoryWrapper } from './CategoriesElements'
 
-const Categories = ({handleCategory, changeView}) => {
+const Categories = ({updateCategory, updateView}) => {
   const categories = ['arts', 'automobiles', 'books', 'business', 'fashion', 'food', 'health', 'home', 'insider', 'magazine', 'movies', 'nyregion', 'obituaries', 'opinion', 'politics', 'realestate', 'science', 'sports', 'sundayreview', 'technology', 'theater', 't-magazine', 'travel', 'upshot', 'us', 'world']
   return (
     <CategoriesContainer>
@@ -9,8 +9,8 @@ const Categories = ({handleCategory, changeView}) => {
         <CategoryWrapper 
           key={i}
           onClick={() => {
-            handleCategory(category)
-            changeView('list')
+            updateCategory(category)
+            updateView('list')
           }} 
           to={`/${category}`} >
           {category}
