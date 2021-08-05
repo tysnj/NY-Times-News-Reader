@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
-import Stories from '../View/Stories/Stories'
-import Categories from '../View/Categories/Categories'
-import StoryDetails from '../View/StoryDetails/StoryDetails'
+import Stories from './Stories/Stories'
+import Categories from './Categories/Categories'
+import StoryDetails from './StoryDetails/StoryDetails'
 // import Error from '../View/Error/Error' TODO: create Error component for friendly display
 
 
-const Content = ({error, category, changeCategory, stories, pageView, changeView, storyLinks}) => {
-  const [selectedStory, setSelectedStory] = useState(null)
+const Content = ({error, category, changeCategory, stories, pageView, changeView, storyLinks, selectedStory, changeStory}) => {
   
-  // const handleStorySelection = (story) => setSelectedStory(story)
+  const handleStorySelection = (story) => changeStory(story)
+  const handleViewSelection = (view) => changeView(view)
   const handleCategorySelection = (section) => changeCategory(section)
 
   return (
     <>
       {error && <div>{error}</div>}
-      {!error && pageView === 'list' && <Stories stories={stories} storyLinks={storyLinks}/>}
+      {!error && pageView === 'list' && <Stories stories={stories} storyLinks={storyLinks} changeStory={handleStorySelection} changeView={handleViewSelection}/>}
       {!error && pageView !== 'categories' && <Categories handleCategorySelection={handleCategorySelection}/>}
-      {!error && pageView !== 'details' && selectedStory && <StoryDetails selectedStory={selectedStory}/>}
+      {!error && pageView !== 'details' && selectedStory && <StoryDetails/>}
     </>
   )
 }

@@ -7,11 +7,18 @@ import {
   StoryHeadline
 } from './StoriesElements'
 
-const Stories = ({stories, storyLinks}) => {
+const Stories = ({stories, storyLinks, changeStory, changeView}) => {
   return (
     <StoriesContainer>
       {stories.map((story, i) => 
-        <StoryWrapper to={`/${storyLinks[i]}`} key={i}>
+        <StoryWrapper 
+          to={`/${storyLinks[i]}`} 
+          key={i}
+          onClick={() => {
+            changeStory(story)
+            changeView('details')
+          }}
+          >
           <StoryHeadline>
             {story.title}
           </StoryHeadline>

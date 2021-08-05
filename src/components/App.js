@@ -6,10 +6,11 @@ import Content from './Content/Content';
 import { fetchStories, cleanData } from '../util';
 
 const App = () => {
+  const [pageView, setPageView] = useState('list')
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
   const [storyLinks, setStoryLinks] = useState([])
-  const [pageView, setPageView] = useState('list')
+  const [selectedStory, setSelectedStory] = useState(null)
   const [error, setError] = useState(null);
 
   const getStories = useRef(() => {})
@@ -37,8 +38,12 @@ const App = () => {
     setCategory(section)
   }
 
-  const changeView = (selection) => {
-    setPageView(selection)
+  const changeView = (view) => {
+    setPageView(view)
+  }
+
+  const changeStory = (selection) => {
+    setSelectedStory(selection)
   }
 
   return (
@@ -46,6 +51,7 @@ const App = () => {
       <GlobalStyle />
       <NavBar 
         changeCategory={changeCategory}
+        changeView={changeView}
       />
       <Switch>
         <Route 
@@ -60,15 +66,25 @@ const App = () => {
               changeCategory={changeCategory}
               stories={stories}
               storyLinks={storyLinks}
+              changeStory={changeStory}
             /> 
           )}
         />
         <Route
-
+          exact
+          path='/:storyPath'
+          render={({ match }) => {
+            const { storyPath } = match.params;
+            const index = storyLinks.indexOf(storyPath);
+            if (index >= 0) {
+              const story = stories[index];
+              return <Content selectedStory={story} path={storyPath} />;
+            }
+            return <Redirect to='/' />;
+          }}
         />
         <Redirect to='/home' />
       </Switch>
-
     </Router>
   );
 }
