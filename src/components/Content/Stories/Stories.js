@@ -4,7 +4,8 @@ import {
   StoriesContainer,
   StoryAuthor,
   StoryWrapper,
-  StoryHeadline
+  StoryHeadline,
+  StoryType
 } from './StoriesElements'
 
 const Stories = ({stories, storyLinks, updateView, updateStory}) => {
@@ -25,6 +26,9 @@ const Stories = ({stories, storyLinks, updateView, updateStory}) => {
           <StoryAuthor>
             {story.byline}
           </StoryAuthor>
+          <StoryType>
+            {story.section} news
+          </StoryType>
         </StoryWrapper>  
       )}
     </StoriesContainer>

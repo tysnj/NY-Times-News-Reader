@@ -6,11 +6,11 @@ export const StoriesContainer = styled(Container)`
   ${Container}
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   width: 75%;
   height: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
 `
 
 export const StoryWrapper = styled(Link)`
@@ -30,6 +30,12 @@ export const StoryHeadline = styled.h1`
 `
 
 export const StoryAuthor = styled.h2`
+  width: 100%;
+  height: 100%;
+  font-size: .8rem;
+`
+
+export const StoryType = styled.h3`
   width: 100%;
   height: 100%;
   font-size: .8rem;
