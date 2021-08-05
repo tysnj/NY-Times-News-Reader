@@ -12,7 +12,7 @@ import {
   NavLink
 } from './NavBarElements'
 
-const NavBar = () => {
+const NavBar = ({changeCategory, changeView, changeStory}) => {
   const [click, setClick] = useState(false)
   
   const handleClick = () => setClick(!click)
@@ -21,7 +21,13 @@ const NavBar = () => {
     <IconContext.Provider value={{color: '#191919'}}>
       <Nav>
         <NavBarContainer>
-          <NavLogo to='/home'>
+          <NavLogo 
+            to='/home'
+            onClick={() => {
+              changeView('list')
+              changeCategory('home')
+              changeStory('')
+          }}>
             <NavIcon/>
               NY Times News Reader
           </NavLogo>
@@ -30,12 +36,24 @@ const NavBar = () => {
           </MobileIcon>
           <NavMenu onClick={handleClick} click={click}>
             <NavItem>
-              <NavLink to='/home'>
+              <NavLink 
+                to='/home' 
+                onClick={() => {
+                    changeView('list')
+                    changeCategory('home')
+                    changeStory('')
+                }}>
                 Home
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to='/categories'>
+              <NavLink 
+                to='/categories' 
+                onClick={() => {
+                  changeView('categories')
+                  changeCategory('home')
+                  changeStory('')
+                }}>
                 Categories
               </NavLink>
             </NavItem>

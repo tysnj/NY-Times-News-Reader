@@ -52,11 +52,28 @@ const App = () => {
       <NavBar 
         changeCategory={changeCategory}
         changeView={changeView}
+        changeStory={changeStory}
       />
       <Switch>
         <Route 
           exact 
           path='/home'
+          render={() => (
+            <Content
+              pageView={pageView}
+              changeView={changeView}
+              error={error}
+              category={category}
+              changeCategory={changeCategory}
+              stories={stories}
+              storyLinks={storyLinks}
+              changeStory={changeStory}
+            /> 
+          )}
+        />
+        <Route
+          exact
+          path='/categories'
           render={() => (
             <Content
               pageView={pageView}
