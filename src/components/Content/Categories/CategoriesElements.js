@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Container } from '../../../globalStyles';
 import { Link } from 'react-router-dom'
 
-export const StoriesContainer = styled(Container)`
+export const CategoriesContainer = styled(Container)`
   ${Container}
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const StoriesContainer = styled(Container)`
   margin-top: 10px;
 `
 
-export const StoryWrapper = styled(Link)`
+export const CategoryWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -21,16 +21,4 @@ export const StoryWrapper = styled(Link)`
   text-decoration: none;
   color: #000;
   padding: .8rem;
-`
-
-export const StoryHeadline = styled.h1`
-  width: 100%;
-  height: 100%;
-  font-size: 1.5rem;
-`
-
-export const StoryAuthor = styled.h2`
-  width: 100%;
-  height: 100%;
-  font-size: .8rem;
 `

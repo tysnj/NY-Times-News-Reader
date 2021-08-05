@@ -6,10 +6,11 @@ import Content from './Content/Content';
 import { fetchStories, cleanData } from '../util';
 
 const App = () => {
+  const [pageView, setPageView] = useState('list')
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
   const [storyLinks, setStoryLinks] = useState([])
-  const [pageView, setPageView] = useState('list')
+  const [selectedStory, setSelectedStory] = useState(null)
   const [error, setError] = useState(null);
 
   const getStories = useRef(() => {})
@@ -37,8 +38,12 @@ const App = () => {
     setCategory(section)
   }
 
-  const changeView = (selection) => {
-    setPageView(selection)
+  const changeView = (view) => {
+    setPageView(view)
+  }  
+  
+  const changeStory = (story) => {
+    setSelectedStory(story)
   }
 
   return (
@@ -46,11 +51,13 @@ const App = () => {
       <GlobalStyle />
       <NavBar 
         changeCategory={changeCategory}
+        changeView={changeView}
+        changeStory={changeStory}
       />
       <Switch>
         <Route 
-          exact 
-          path='/home'
+          exact
+          path={`/${category}`}
           render={() => (
             <Content
               pageView={pageView}
@@ -60,15 +67,35 @@ const App = () => {
               changeCategory={changeCategory}
               stories={stories}
               storyLinks={storyLinks}
+              changeStory={changeStory}
             /> 
           )}
         />
         <Route
-
+          exact
+          path='/categories'
+          render={() => (
+            <Content
+              pageView={pageView}
+              changeView={changeView}
+              changeCategory={changeCategory}
+            /> 
+          )}
+        />
+        <Route
+          exact
+          path='/:storyPath'
+          render={({ match }) => {
+            const { storyPath } = match.params;
+            const index = storyLinks.indexOf(storyPath);
+            if (index >= 0) {
+              return <Content selectedStory={selectedStory} path={storyLinks[index]} />;
+            }
+            return <Redirect to='/home' />;
+          }}
         />
         <Redirect to='/home' />
       </Switch>
-
     </Router>
   );
 }
