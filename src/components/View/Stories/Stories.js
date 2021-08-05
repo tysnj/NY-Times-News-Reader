@@ -7,11 +7,11 @@ import {
   StoryHeadline
 } from './StoriesElements'
 
-const Stories = ({handleSelection, stories}) => {
+const Stories = ({stories, storyLinks}) => {
   return (
     <StoriesContainer>
       {stories.map((story, i) => 
-        <StoryWrapper handleSelection={handleSelection} key={i}>
+        <StoryWrapper to={`/${storyLinks[i]}`} key={i}>
           <StoryHeadline>
             {story.title}
           </StoryHeadline>

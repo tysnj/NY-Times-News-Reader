@@ -8,6 +8,7 @@ import { fetchStories, cleanData } from '../util';
 const App = () => {
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
+  const [storyLinks, setStoryLinks] = useState([])
   const [pageView, setPageView] = useState('list')
   const [error, setError] = useState(null);
 
@@ -18,6 +19,13 @@ const App = () => {
     .then(data => setStories(cleanData(data)))
     .catch(error => setError(`Something's gone wrong. Please try again`))
   }, [category])
+
+  useEffect(() => {
+    const paths = stories.map((story) => {
+      return story.url.split('/').pop().split('.').shift();
+    });
+    setStoryLinks(paths);
+  }, [stories]);
 
   getStories.current = () => {
     const requestURL = 'https://api.nytimes.com/svc/topstories/v2/'
@@ -51,6 +59,7 @@ const App = () => {
               category={category}
               changeCategory={changeCategory}
               stories={stories}
+              storyLinks={storyLinks}
             /> 
           )}
         />
