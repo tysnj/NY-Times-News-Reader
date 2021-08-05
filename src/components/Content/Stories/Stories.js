@@ -7,7 +7,7 @@ import {
   StoryHeadline
 } from './StoriesElements'
 
-const Stories = ({stories, storyLinks, changeStory, changeView}) => {
+const Stories = ({stories, storyLinks, changeView}) => {
   return (
     <StoriesContainer>
       {stories.map((story, i) => 
@@ -15,7 +15,6 @@ const Stories = ({stories, storyLinks, changeStory, changeView}) => {
           to={`/${storyLinks[i]}`} 
           key={i}
           onClick={() => {
-            changeStory(story)
             changeView('details')
           }}
           >

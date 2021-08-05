@@ -10,7 +10,6 @@ const App = () => {
   const [category, setCategory] = useState('home')
   const [stories, setStories] = useState([])
   const [storyLinks, setStoryLinks] = useState([])
-  const [selectedStory, setSelectedStory] = useState(null)
   const [error, setError] = useState(null);
 
   const getStories = useRef(() => {})
@@ -42,22 +41,17 @@ const App = () => {
     setPageView(view)
   }
 
-  const changeStory = (selection) => {
-    setSelectedStory(selection)
-  }
-
   return (
     <Router>
       <GlobalStyle />
       <NavBar 
         changeCategory={changeCategory}
         changeView={changeView}
-        changeStory={changeStory}
       />
       <Switch>
         <Route 
-          exact 
-          path='/home'
+          
+          path={`/${category}`}
           render={() => (
             <Content
               pageView={pageView}
@@ -67,7 +61,6 @@ const App = () => {
               changeCategory={changeCategory}
               stories={stories}
               storyLinks={storyLinks}
-              changeStory={changeStory}
             /> 
           )}
         />
@@ -83,7 +76,6 @@ const App = () => {
               changeCategory={changeCategory}
               stories={stories}
               storyLinks={storyLinks}
-              changeStory={changeStory}
             /> 
           )}
         />
@@ -97,7 +89,7 @@ const App = () => {
               const story = stories[index];
               return <Content selectedStory={story} path={storyPath} />;
             }
-            return <Redirect to='/' />;
+            return <Redirect to='/home' />;
           }}
         />
         <Redirect to='/home' />
