@@ -21,5 +21,5 @@ This was created as a take home technical challenge with the work being timeboxe
 2. `cd` into the directory and run `npm i` to install dependencies
 3. run `npm start` to open the development server
 
-*Note*: To develop on this application, you must have an account registered with the [NY Times Developers](https://developer.nytimes.com/) page in order to have a working API key. For more information on how to properly store your API key, visit [this](https://betterprogramming.pub/how-to-hide-your-api-keys-c2b952bc07e6) page.
+*Note*: You must have an account registered with the [NY Times Developers](https://developer.nytimes.com/) page in order to have a working API key. More information on how to properly store your API key can be found [here](https://create-react-app.dev/docs/adding-custom-environment-variables/).
 
