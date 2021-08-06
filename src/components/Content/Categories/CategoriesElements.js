@@ -5,20 +5,24 @@ import { Link } from 'react-router-dom'
 export const CategoriesContainer = styled(Container)`
   ${Container}
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  width: 75%;
+  width: 300px;
   height: 100%;
   margin-top: 10px;
 `
 
 export const CategoryWrapper = styled(Link)`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   text-decoration: none;
   color: #000;
-  padding: .8rem;
+  /* padding: .8rem;  */
+  width: 100%;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
