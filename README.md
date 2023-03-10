@@ -1,3 +1,5 @@
+Check out the deployed page [here](https://nyt-top-stories-reader.surge.sh/home)!
+
 # New York Times News Reader
 
 ## Overview
